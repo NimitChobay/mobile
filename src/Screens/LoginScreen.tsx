@@ -22,17 +22,15 @@ import { Icon } from 'react-native-elements';
 import { useFonts } from 'expo-font';
 
 
-
-
-
 export default function LoginScreen({ navigation }) {
   
   const [loaded] = useFonts({
-    NSLight,
-    NSRegular,
-    NSBold,
-    NSExtraBold,
+    NSLight :require('../../src/assets/fonts/NunitoSans/NunitoSans-Light.ttf'),
+    NSRegular:require('../../src/assets/fonts/NunitoSans/NunitoSans-Regular.ttf'),
+    NSBold:require('../../src/assets/fonts/NunitoSans/NunitoSans-Bold.ttf'),
+    NSExtraBold:require('../../src/assets/fonts/NunitoSans/NunitoSans-ExtraBold.ttf'),
   });
+  
 
   const [activeTab, setActiveTab] = useState('Login');
   
