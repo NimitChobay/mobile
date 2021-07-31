@@ -17,7 +17,7 @@ const SettingsScreen = () => {
               textAlign: 'center',
               marginBottom: 16,
             }}>
-            Example of Splash, Login and Sign Up in React Native
+            Setting Related to Profile Can be here
             {'\n\n'}
             This is the Settings Screen
           </Text>
@@ -28,16 +28,9 @@ const SettingsScreen = () => {
             textAlign: 'center',
             color: 'grey',
           }}>
-          Splash, Login and Register Example{'\n'}React Native
+          Welcome to Settings Page
         </Text>
-        <Text
-          style={{
-            fontSize: 16,
-            textAlign: 'center',
-            color: 'grey',
-          }}>
-          www.aboutreact.com
-        </Text>
+        
       </View>
     </SafeAreaView>
   );
