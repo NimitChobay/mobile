@@ -8,13 +8,23 @@ import WebView from 'react-native-webview';
 
 import LoginScreen from './src/Screens/LoginScreen';
 import DrawerNavigationRoutes from './src/Screens/DrawerNavigatorRoutes'
+import SplashScreen from './src/Screens/splashScreen';
+import TermsAndConditions from './src/Screens/TermsAndCondition';
+
+
 
 var Stack = createStackNavigator();
 
-export default function  App (){
+ const App= ()=>{
   return (
     <NavigationContainer>
-      <Stack.Navigator>
+      <Stack.Navigator initialRouteName="Terms">
+        {/* SplashScreen which will come once for 5 Seconds */}
+        <Stack.Screen  name="SplashScreen" component={SplashScreen}   options={{headerShown: false}}
+        />
+         <Stack.Screen  name="Terms" component={TermsAndConditions}   options={{headerShown: false}}
+        />
+         
       <Stack.Screen name="Login" component={LoginScreen}  options={{ title: 'Login',headerShown: false }} />
       <Stack.Screen
           name="DrawerNavigationRoutes"
@@ -26,7 +36,8 @@ export default function  App (){
         </NavigationContainer>
   );
 }
-  
+
+export default App;
   
   function GooglePage({route, navigation}) {
 

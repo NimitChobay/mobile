@@ -1,41 +1,80 @@
+// import React in our code
+import React, {useState, useEffect} from 'react';
 
-import React from 'react';
-import { StyleSheet,Button, Text, View,Modal,TouchableOpacity} from 'react-native';
-import Background from '../components/Background';
-import Header from '../components/Header';
-import Logo from '../components/Logo';
-import Paragraph from '../components/Paragraph';
+// import all the components we are going to use
+import {
+  ActivityIndicator,
+  View,
+  StyleSheet, 
+  Image,Text
+} from 'react-native';
 
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
-
-export default function SplashScreen({route, navigation}) {
+const SplashScreen=({navigation})=> {
   
+  //State for ActivityIndicator animation
+  const [animating, setAnimating] = useState(true);
+  
+  useEffect(() => {
+
+    setTimeout(() => {
+      setAnimating(false);
+      //Check if user_id is set or not
+      //If not then send for Authentication
+      //else send to Home Screen
+      AsyncStorage.getItem('user_id').then((value) =>
+        navigation.replace(
+          value === null ? 'Login' : 'DrawerNavigationRoutes'
+        ),
+      );
+    }, 1000);
+    
+  }, []);
+
+
     return (
-      <NavigationContainer>
-      <Stack.Navigator>
-      <Stack.Screen name="Splash" component={SplashScreen}    options={{ title: 'Welcome' }} />
-      <Stack.Screen name="Login" component={LoginScreen}    options={{ title: 'Login' }} />
-      
-            <Stack.Screen name="Home" component={HomeScreen}  />
-      <Stack.Screen name="Settings" component={Settings} />
-      <Stack.Screen name="GooglePage" component={GooglePage} />
-        </Stack.Navigator>
-        </NavigationContainer>
+      <View style={styles.container}>
+      <Image
+        source={require('../assets/logogame.png')}
+        style={styles.img}
+      />
+      <Text style={styles.appname}>
+            Big Win
+      </Text>
+      <ActivityIndicator
+        animating={animating}
+        color="#FFFFFF"
+        size="large"
+        style={styles.activityIndicator}
+      />
+    </View>
+    
+   
         
      
     );
   };
-
+  export default SplashScreen;
   const styles = StyleSheet.create({
-    button: {
+    container: {
+      flex: 1,
       alignItems: 'center',
       justifyContent: 'center',
-      paddingVertical: 12,
-      paddingHorizontal: 32,
-      borderRadius: 4,
-      elevation: 3,
-      backgroundColor: 'black',
-     
-      marginTop: 50,
-    }
+      backgroundColor: '#307ecc',
+    },
+    img:{
+      width: '10%', 
+      resizeMode: 'contain', 
+      margin: 10
+    },
+    appname:{
+      color: '#114998',
+      fontSize: 30,
+      fontWeight: 'bold',
+    },
+    activityIndicator: {
+      alignItems: 'center',
+      height: 60,
+    },
   });
