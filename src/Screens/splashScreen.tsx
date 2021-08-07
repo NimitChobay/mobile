@@ -15,21 +15,23 @@ const SplashScreen=({navigation})=> {
   
   //State for ActivityIndicator animation
   const [animating, setAnimating] = useState(true);
+  const [imgloaded, setImgloaded] = useState(false);
   
   useEffect(() => {
-
-    setTimeout(() => {
-      setAnimating(false);
-      //Check if user_id is set or not
-      //If not then send for Authentication
-      //else send to Home Screen
-      AsyncStorage.getItem('user_id').then((value) =>
-        navigation.replace(
-          value === null ? 'Login' : 'DrawerNavigationRoutes'
-        ),
-      );
-    }, 1000);
-    
+    if(true){
+      setTimeout(() => {
+        setAnimating(false);
+        //Check if user_id is set or not
+        //If not then send for Authentication
+        //else send to Home Screen
+        
+        AsyncStorage.getItem('user_id').then((value) =>
+          navigation.replace(
+            value === null ? 'Terms' : 'DrawerNavigationRoutes'
+          ),
+        );
+      }, 1000);  
+    }
   }, []);
 
 
@@ -38,6 +40,7 @@ const SplashScreen=({navigation})=> {
       <Image
         source={require('../assets/logogame.png')}
         style={styles.img}
+        onLoad={() => setImgloaded(true)}
       />
       <Text style={styles.appname}>
             Big Win

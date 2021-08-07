@@ -1,7 +1,7 @@
 import React from 'react';
 import {View, Image, TouchableOpacity} from 'react-native';
 
-const NavigationDrawerHeader = (props) => {
+const NavigationDrawerHeaderLeft = (props) => {
   const toggleDrawer = () => {
     props.navigationProps.toggleDrawer();
   };
@@ -17,7 +17,9 @@ const NavigationDrawerHeader = (props) => {
           style={{width: 25, height: 25, marginLeft: 5}}
         />
       </TouchableOpacity>
+
+      
     </View>
   );
 };
-export default NavigationDrawerHeader;
+export default NavigationDrawerHeaderLeft;

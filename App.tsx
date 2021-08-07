@@ -18,7 +18,7 @@ var Stack = createStackNavigator();
  const App= ()=>{
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Terms">
+      <Stack.Navigator initialRouteName="SplashScreen">
         {/* SplashScreen which will come once for 5 Seconds */}
         <Stack.Screen  name="SplashScreen" component={SplashScreen}   options={{headerShown: false}}
         />

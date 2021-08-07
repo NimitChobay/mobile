@@ -6,8 +6,11 @@ import {createDrawerNavigator} from '@react-navigation/drawer';
 
 import HomeScreen from './HomeSrceen';
 import SettingsScreen from './Settings';
+import WalletScreen from './AddCashScreen';
+
 import CustomSidebarMenu from './CustomMenuBar';
-import NavigationDrawerHeader from './NavigationDrawerHeader';
+import NavigationDrawerHeaderLeft from './NavigationDrawerHeader';
+import NavigationDrawerHeaderRight from './NavigationDrawerHeaderRight';
 const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator()
 
@@ -20,7 +23,10 @@ const homeScreenStack = ({navigation}) => {
         options={{
           title: 'Home', //Set Header Title
           headerLeft: () => (
-            <NavigationDrawerHeader navigationProps={navigation} />
+            <NavigationDrawerHeaderLeft navigationProps={navigation} />
+          ),
+          headerRight:()=>(
+            <NavigationDrawerHeaderRight navigationProps={navigation} />
           ),
           headerStyle: {
             backgroundColor: '#307ecc', //Set Header color
@@ -41,7 +47,10 @@ const settingScreenStack = ({navigation}) => {
       initialRouteName="SettingsScreen"
       screenOptions={{
         headerLeft: () => (
-          <NavigationDrawerHeader navigationProps={navigation} />
+          <NavigationDrawerHeaderLeft navigationProps={navigation} />
+        ),
+        headerRight: () => (
+          <NavigationDrawerHeaderRight navigationProps={navigation} />
         ),
         headerStyle: {
           backgroundColor: '#307ecc', //Set Header color
@@ -56,6 +65,32 @@ const settingScreenStack = ({navigation}) => {
         component={SettingsScreen}
         options={{
           title: 'Settings', //Set Header Title
+        }}
+      />
+    </Stack.Navigator>
+  );
+};
+const walletScreenStack = ({navigation}) => {
+  return (
+    <Stack.Navigator
+      initialRouteName="WalletScteen"
+      screenOptions={{
+        headerLeft: () => (
+          <NavigationDrawerHeaderLeft navigationProps={navigation} />
+        ),
+        headerStyle: {
+          backgroundColor: '#307ecc', //Set Header color
+        },
+        headerTintColor: '#fff', //Set Header text color
+        headerTitleStyle: {
+          fontWeight: 'bold', //Set Header text style
+        },
+      }}>
+      <Stack.Screen
+        name="WalletScteen"
+        component={WalletScreen}
+        options={{
+          title: 'Add Cash', //Set Header Title
         }}
       />
     </Stack.Navigator>
@@ -84,6 +119,11 @@ const DrawerNavigatorRoutes = (props) => {
         name="settingScreenStack"
         options={{drawerLabel: 'Setting Screen'}}
         component={settingScreenStack}
+      />
+      <Drawer.Screen
+        name="WalletScreenStack"
+        options={{drawerLabel: 'Add Cash'}}
+        component={walletScreenStack}
       />
     </Drawer.Navigator>
   );
